@@ -4,7 +4,7 @@ This demo illustrates, on a reduced scale, the process of transforming raw acous
 
 ## Contents
 
-- `media/` — 10 example audio files (.wav, 30 seconds each, ~2.5 MB)
+- `media/` — 10 example audio files (.wav, 1 s each, ~2.5 MB) used for demonstration (can be replaced by other environmental data)
 - `scripts/` — scripts to extract basic metadata and generate DwC/EML-ready tables (`extract_metadata.py`, `generate_dwceml.py`)
 - `metadata_extracted.csv` — automatically extracted metadata from audio files
 - `extra_metadata.csv` — manually added metadata (species, location, date/time)
@@ -34,8 +34,10 @@ This demo illustrates, on a reduced scale, the process of transforming raw acous
 
 ## Notes
 
-- This demo uses a small set of example files for clarity and reproducibility.
+- This demo uses audio files for clarity, but the workflow is designed to handle other types of environmental data such as sensor CSVs, camera trap images, or video.
 - Real deployments would use larger volumes of data and more detailed metadata.
 - The scripts are intended as **illustrative examples**, not production-ready tools.
 - URLs for associated media are placeholders (`https://demo.org/media/{file_name}`) and can be replaced with Zenodo/Wikimedia Commons links in real datasets.
+
+
 
