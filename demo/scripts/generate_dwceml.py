@@ -50,7 +50,7 @@ for _, row in df.iterrows():
         "occurrenceID": f"occ_{row['eventID']}_{row['file_name'].split('.')[0]}",
         "eventID": row["eventID"],
         "scientificName": row.get("scientificName", "Unknown species (demo)"),
-        "basisOfRecord": "HumanObservation",
+        "basisOfRecord": "MachineObservation",
         # For demo, generate a placeholder URL for associatedMedia
         "associatedMedia": f"https://demo.org/media/{row['file_name']}",
         "duration_sec": row.get("duration_seconds", "")
@@ -94,3 +94,4 @@ with open(eml_file, "w", encoding="utf-8") as f:
     f.write(eml_content)
 
 print(f"Darwin Core and EML files generated:\n- {dwc_event_csv}\n- {dwc_occurrence_csv}\n- {eml_file}")
+
