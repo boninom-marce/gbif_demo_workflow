@@ -1,7 +1,7 @@
 # Reproducible Workflow for Publishing Interoperable Biodiversity Datasets
 
 **Summary**  
-This repository documents a reproducible workflow for transforming raw local data into curated, interoperable datasets published and linked to GBIF.
+This repository documents a reproducible workflow for transforming raw local data into curated, interoperable datasets published and linked to GBIF. In this demonstration, acoustic recordings are used as example files, but the workflow can be adapted to other types of environmental data (e.g., meteorological records, camera trap photos/videos).
 
 ---
 
@@ -28,7 +28,7 @@ This repository documents a reproducible workflow for transforming raw local dat
 ## Step-by-step workflow (input → process → output)
 
 ### Step 1 — Backup and version control (preservation)
-- Deposit raw files (e.g., `.wav`, `.csv` from sensors) in NAS folder structure with unique naming convention (e.g., `site_date_sensor_type.ext`).  
+- Deposit raw files (e.g., `.wav` for audio, `.csv` from sensors, or other file types) in NAS folder structure with unique naming convention (e.g., `site_date_sensor_type.ext`).  
 - Register minimum metadata in a control sheet (`control.csv`) including: file ID, site, coordinates, date/time, device, person responsible, proposed license, quality notes.  
 - Maintain local backups and a versioning folder (`/versions`) to ensure preservation and traceability.
 
@@ -59,7 +59,7 @@ This repository documents a reproducible workflow for transforming raw local dat
 ### Step 4 — Packaging for GBIF
 - Generate two data tables:  
   - **Event core:** eventID, eventDate, samplingProtocol, location, environmental measurements.  
-  - **Occurrence core:** species records derived from acoustic analysis (or manual IDs), linked to eventID and pointing associatedMedia to the hosted URL/DOI.  
+  - **Occurrence core:** species or observation records derived from analysis (e.g., acoustic identification in demo, or other sensor/field data), linked to eventID and pointing associatedMedia to the hosted URL/DOI.  
 - Create dataset metadata (EML/IPT) describing methodology, temporal/spatial coverage, responsibilities, and licenses.
 
 ---
@@ -79,7 +79,7 @@ This repository documents a reproducible workflow for transforming raw local dat
   - Flowchart of the workflow  
 - A reduced demo dataset (fictitious or anonymized) is provided under `/demo` to allow reviewers to run the pipeline.  
   - **Demo includes:**  
-    - `media/` — example audio files  
+    - `media/` — example audio files (demo purpose; workflow adaptable to other data types)
     - `metadata_extracted.csv` — automatically extracted metadata from audio files  
     - `extra_metadata.csv` — manually added metadata (species, location, date/time)  
 - Instructions for reproducing the pipeline with demo data and commands are also included in `/demo`.
@@ -88,3 +88,4 @@ This repository documents a reproducible workflow for transforming raw local dat
 
 ## License
 Specify the license for code and data (e.g., MIT for scripts, CC-BY 4.0 for metadata, CC0/CC-BY-SA for media).
+
