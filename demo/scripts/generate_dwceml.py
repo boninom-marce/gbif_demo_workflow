@@ -17,12 +17,12 @@ from datetime import datetime
 import os
 
 # Paths
-metadata_csv = "demo/metadata_extracted.csv"
-extra_metadata_csv = "demo/extra_metadata.csv"
+metadata_csv = "metadata_extracted.csv"
+extra_metadata_csv = "extra_metadata.csv"
 
-dwc_event_csv = "demo/dwc_event.csv"
-dwc_occurrence_csv = "demo/dwc_occurrence.csv"
-eml_file = "demo/eml.xml"
+dwc_event_csv = "dwc_event.csv"
+dwc_occurrence_csv = "dwc_occurrence.csv"
+eml_file = "eml.xml"
 
 # Load CSVs
 tech_df = pd.read_csv(metadata_csv)
@@ -94,4 +94,3 @@ with open(eml_file, "w", encoding="utf-8") as f:
     f.write(eml_content)
 
 print(f"Darwin Core and EML files generated:\n- {dwc_event_csv}\n- {dwc_occurrence_csv}\n- {eml_file}")
-
