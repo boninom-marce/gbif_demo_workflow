@@ -15,10 +15,15 @@ import os
 import wave
 import csv
 
+# -----------------------------
+# Updated paths: relative to script
+# -----------------------------
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+
 # Folder where the audio files are stored
-MEDIA_FOLDER = "demo/media"
+MEDIA_FOLDER = os.path.join(SCRIPT_DIR, "../media")
 # Output CSV file with extracted metadata
-OUTPUT_FILE = "demo/metadata_extracted.csv"
+OUTPUT_FILE = os.path.join(SCRIPT_DIR, "../metadata_extracted.csv")
 
 def extract_metadata(file_path):
     """
@@ -52,6 +57,10 @@ def main():
     - Extracts metadata
     - Saves results to OUTPUT_FILE as CSV
     """
+    if not os.path.exists(MEDIA_FOLDER):
+        print(f"Error: Media folder not found: {MEDIA_FOLDER}")
+        return
+
     rows = []
     for file_name in os.listdir(MEDIA_FOLDER):
         if file_name.lower().endswith(".wav"):
@@ -70,3 +79,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
