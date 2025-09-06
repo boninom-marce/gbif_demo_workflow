@@ -1,7 +1,7 @@
 # Reproducible Workflow for Publishing Interoperable Biodiversity Datasets
 
 **Summary**  
-This repository documents a reproducible workflow for transforming raw local data into curated, interoperable datasets published and linked to GBIF. In this demonstration, acoustic recordings are used as example files, but the workflow can be adapted to other types of environmental data (e.g., meteorological records, camera trap photos/videos).
+This repository documents a reproducible workflow for transforming raw local data into curated, interoperable datasets published and linked to GBIF.
 
 ---
 
@@ -15,7 +15,8 @@ This repository documents a reproducible workflow for transforming raw local dat
   - R 4.x (optional)
 
 ### External Repositories
-- Zenodo or Wikimedia Commons (for media hosting)  
+- Hugging Face (for large curated datasets, media, and environmental measurements)  
+- Zenodo or Wikimedia Commons (for selected media examples)  
 - Public code repository (GitHub/GitLab)
 
 ### Recommended Software
@@ -25,10 +26,28 @@ This repository documents a reproducible workflow for transforming raw local dat
 
 ---
 
+## Environment Setup
+
+```bash
+# Create virtual environment
+python -m venv venv
+
+# Activate environment
+# Windows
+venv\Scripts\activate
+# macOS/Linux
+source venv/bin/activate
+
+# Install required libraries
+pip install -r requirements.txt```
+
+
+---
+
 ## Step-by-step workflow (input → process → output)
 
 ### Step 1 — Backup and version control (preservation)
-- Deposit raw files (e.g., `.wav` for audio, `.csv` from sensors, or other file types) in NAS folder structure with unique naming convention (e.g., `site_date_sensor_type.ext`).  
+- Deposit raw files (e.g., `.wav`, `.csv` from sensors) in NAS folder structure with unique naming convention (e.g., `site_date_sensor_type.ext`).  
 - Register minimum metadata in a control sheet (`control.csv`) including: file ID, site, coordinates, date/time, device, person responsible, proposed license, quality notes.  
 - Maintain local backups and a versioning folder (`/versions`) to ensure preservation and traceability.
 
@@ -49,7 +68,7 @@ This repository documents a reproducible workflow for transforming raw local dat
 ---
 
 ### Step 3 — Media publication (media hosting)
-- Select representative examples or curated packages for upload to **Zenodo** (DOI) or **Wikimedia Commons** (stable URL).  
+- Select representative examples or curated packages for upload to **Hugging Face**, **Zenodo** (DOI) or **Wikimedia Commons** (stable URL).  
 - Provide metadata (author, license, description, dataset link).  
 - Record resulting URL/DOI/PID in the `master_metadata.csv`.  
 - ⚠️ Upload only curated/representative subsets to public free repositories (not necessarily the entire raw dataset initially).
@@ -59,14 +78,14 @@ This repository documents a reproducible workflow for transforming raw local dat
 ### Step 4 — Packaging for GBIF
 - Generate two data tables:  
   - **Event core:** eventID, eventDate, samplingProtocol, location, environmental measurements.  
-  - **Occurrence core:** species or observation records derived from analysis (e.g., acoustic identification in demo, or other sensor/field data), linked to eventID and pointing associatedMedia to the hosted URL/DOI.  
+  - **Occurrence core:** species records derived from acoustic analysis (or manual IDs), linked to eventID and pointing associatedMedia to the hosted URL/DOI.  
 - Create dataset metadata (EML/IPT) describing methodology, temporal/spatial coverage, responsibilities, and licenses.
 
 ---
 
 ### Step 5 — Dataset publication
 - Publish curated dataset to **CONICET Digital** or an **IPT** (Integrated Publishing Toolkit) managed by INIBIOMA/national GBIF node.  
-- Ensure that `associatedMedia` fields point to Zenodo/Wikimedia URLs so that GBIF can harvest and index them.  
+- Ensure that `associatedMedia` fields point to Hugging Face/Zenodo/Wikimedia URLs for GBIF indexing.  
 - Register DOI/identifier and document release in GitHub with changelog.
 
 ---
@@ -77,15 +96,13 @@ This repository documents a reproducible workflow for transforming raw local dat
   - CSV/EML templates  
   - This `README.md` with tutorial step-by-step instructions  
   - Flowchart of the workflow  
-- A reduced demo dataset (fictitious or anonymized) is provided under `/demo` to allow reviewers to run the pipeline.  
-  - **Demo includes:**  
-    - `media/` — example audio files (demo purpose; workflow adaptable to other data types)
+- **Demo dataset and media** are included at the root.  
+    - `media/` — example audio files  
     - `metadata_extracted.csv` — automatically extracted metadata from audio files  
     - `extra_metadata.csv` — manually added metadata (species, location, date/time)  
-- Instructions for reproducing the pipeline with demo data and commands are also included in `/demo`.
+- Users can run main.py to reproduce the workflow end-to-end.
 
 ---
 
 ## License
 Specify the license for code and data (e.g., MIT for scripts, CC-BY 4.0 for metadata, CC0/CC-BY-SA for media).
-
