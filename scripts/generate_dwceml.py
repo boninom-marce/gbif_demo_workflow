@@ -2,7 +2,7 @@
 generate_dwceml.py
 
 This script generates Darwin Core (Event Core + Occurrence Core) CSV files
-and a minimal EML file from demo acoustic data.
+and a minimal EML file from example acoustic data.
 
 It combines:
 1. metadata_extracted.csv -> automatically extracted technical metadata
@@ -16,15 +16,27 @@ import pandas as pd
 from datetime import datetime
 import os
 
-# Paths
-metadata_csv = "metadata_extracted.csv"
-extra_metadata_csv = "extra_metadata.csv"
+# -----------------------------
+# Paths (relative to script)
+# -----------------------------
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
-dwc_event_csv = "dwc_event.csv"
-dwc_occurrence_csv = "dwc_occurrence.csv"
-eml_file = "eml.xml"
+metadata_csv = os.path.join(SCRIPT_DIR, "../metadata_extracted.csv")
+extra_metadata_csv = os.path.join(SCRIPT_DIR, "../extra_metadata.csv")
 
+dwc_event_csv = os.path.join(SCRIPT_DIR, "../dwc_event.csv")
+dwc_occurrence_csv = os.path.join(SCRIPT_DIR, "../dwc_occurrence.csv")
+eml_file = os.path.join(SCRIPT_DIR, "../eml.xml")
+
+# -----------------------------
 # Load CSVs
+# -----------------------------
+if not os.path.exists(metadata_csv):
+    raise FileNotFoundError(f"Missing input file: {metadata_csv}")
+
+if not os.path.exists(extra_metadata_csv):
+    raise FileNotFoundError(f"Missing input file: {extra_metadata_csv}")
+
 tech_df = pd.read_csv(metadata_csv)
 extra_df = pd.read_csv(extra_metadata_csv)
 
@@ -37,7 +49,6 @@ df['eventID'] = df['file_name'].apply(lambda x: f"event_{x.split('.')[0]}")
 # -----------------------------
 # Create Event Core
 # -----------------------------
-# Minimal columns for Event Core: eventID, eventDate, eventTime, decimalLatitude, decimalLongitude, locality
 event_df = df[['eventID', 'eventDate', 'eventTime', 'decimalLatitude', 'decimalLongitude', 'locality']].drop_duplicates()
 event_df.to_csv(dwc_event_csv, index=False)
 
@@ -51,8 +62,8 @@ for _, row in df.iterrows():
         "eventID": row["eventID"],
         "scientificName": row.get("scientificName", "Unknown species (demo)"),
         "basisOfRecord": "MachineObservation",
-        # For demo, generate a placeholder URL for associatedMedia
-        "associatedMedia": f"https://demo.org/media/{row['file_name']}",
+        # Placeholder URL → replace with Zenodo/Hugging Face/Wikimedia when publishing
+        "associatedMedia": f"https://replace.me/media/{row['file_name']}",
         "duration_sec": row.get("duration_seconds", "")
     })
 
