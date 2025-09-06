@@ -1,7 +1,7 @@
 """
 extract_metadata.py
 
-This script reads all WAV audio files in the demo/media folder,
+This script reads all WAV audio files in the media/ folder,
 extracts technical metadata (duration, sampling rate, bit depth, channels),
 and saves a CSV file (metadata_extracted.csv) with the results.
 
@@ -68,6 +68,10 @@ def main():
             metadata = extract_metadata(file_path)
             rows.append(metadata)
 
+    if not rows:
+        print("No WAV files found in media/.")
+        return
+
     # Save CSV
     with open(OUTPUT_FILE, "w", newline="", encoding="utf-8") as csvfile:
         fieldnames = ["file_name", "duration_seconds", "sampling_rate_hz", "bit_depth", "channels"]
@@ -79,4 +83,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
