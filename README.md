@@ -4,6 +4,34 @@
 This repository documents a reproducible workflow for transforming raw local data into curated, interoperable datasets published and linked to GBIF.
 
 ---
+## Quick start
+
+```bash
+# 1) Clone the repository (replace with your repo URL)
+git clone https://github.com/<your-org>/<your-repo>.git
+cd <your-repo>
+
+# 2) Create a Python virtual environment
+python -m venv venv
+
+# 3) Activate the environment
+# Windows:
+venv\Scripts\activate
+# macOS / Linux:
+source venv/bin/activate
+
+# 4) Install dependencies
+pip install -r requirements.txt
+
+# 5) Run the full demo workflow (main.py runs the scripts in order)
+python main.py
+
+# Optional: run scripts individually
+# python scripts/extract_metadata.py
+# python scripts/generate_dwceml.py
+```
+
+---
 
 ## Requirements
 
@@ -106,5 +134,6 @@ pip install -r requirements.txt
 
 ## License
 Specify the license for code and data (e.g., MIT for scripts, CC-BY 4.0 for metadata, CC0/CC-BY-SA for media).
+
 
 
