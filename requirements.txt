@@ -1,0 +1,4 @@
+pandas
+pygbif
+soundfile
+librosa
