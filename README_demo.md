@@ -14,7 +14,8 @@ This demo illustrates, on a reduced scale, the process of transforming raw acous
 
 1. **Check dependencies**
    - Python 3.8+
-   - Required libraries: `pandas`, `wave`, `datetime`
+   - Required libraries (installed via `requirements.txt`):  
+     `pandas`, `wave`, `datetime`
 
 2. **Inspect the input**
    - Raw audio files are located in `media/`
@@ -22,14 +23,14 @@ This demo illustrates, on a reduced scale, the process of transforming raw acous
    - Manual/contextual metadata is provided in `extra_metadata.csv`
 
 3. **Run the scripts**
-   1. Execute `extract_metadata.py` to generate `metadata_extracted.csv` containing duration, sampling rate, bit depth, and number of channels for each audio file.
-   2. Execute `generate_dwceml.py` to merge `metadata_extracted.csv` with `extra_metadata.csv` and produce:
+   1. Execute `extract_metadata.py` (inside `scripts/`) to generate `metadata_extracted.csv` containing duration, sampling rate, bit depth, and number of channels for each audio file.
+   2. Execute `generate_dwceml.py` (inside `scripts/`) to merge `metadata_extracted.csv` with `extra_metadata.csv` and produce:
       - `dwc_event.csv` — simplified Darwin Core Event table
       - `dwc_occurrence.csv` — simplified Darwin Core Occurrence table
       - `eml.xml` — minimal EML metadata file
 
 4. **Inspect the outputs**
-   - All output files are written to the `demo/` folder.
+   - All output files are written to the repository root (`/`).
    - These files illustrate the structure expected for integration with IPT/GBIF.
 
 ## Notes
