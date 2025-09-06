@@ -41,7 +41,7 @@ source venv/bin/activate
 # Install required libraries
 pip install -r requirements.txt
 
-
+```
 ---
 
 ## Step-by-step workflow (input → process → output)
@@ -106,4 +106,5 @@ pip install -r requirements.txt
 
 ## License
 Specify the license for code and data (e.g., MIT for scripts, CC-BY 4.0 for metadata, CC0/CC-BY-SA for media).
+
 
